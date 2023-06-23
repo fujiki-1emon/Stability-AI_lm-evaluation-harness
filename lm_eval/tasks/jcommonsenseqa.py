@@ -185,7 +185,27 @@ class JCommonsenseQAWithRinnaInstructionSFT(JCommonsenseQA):
         choices = "<NL>".join([f"- {choice}" for choice in doc['choices']])
         input_text = f"質問：{doc['goal']}<NL>" + f"選択肢：<NL>{choices}"
         return f"<NL>ユーザー: {input_text}<NL>システム: "
-        
+
+
+class JCommonsenseQAWithStableLMSFTV1(JCommonsenseQA):
+    """
+    Reference:
+    - TODO
+    """
+    VERSION = 1.1
+    PROMPT_VERSION = 0.5
+    USER_TOKEN = "<|USER|>"
+    ASSISTANT_TOKEN = "<|ASSISTANT|>"
+    DESCRIPTION = (
+        f"{USER_TOKEN}与えられた選択肢の中から、最適な答えを選んでください。"
+        f"{ASSISTANT_TOKEN}分かりました。")
+    def doc_to_text(self, doc):
+        USER_TOKEN = "<|USER|>"
+        ASSISTANT_TOKEN = "<|ASSISTANT|>"
+        DELIMITER = "\n"
+        choices = DELIMITER.join([f"- {choice}" for choice in doc['choices']])
+        input_text = f"質問：{doc['goal']}{DELIMITER}" + f"選択肢：{DELIMITER}{choices}"
+        return f"{USER_TOKEN}{input_text}{ASSISTANT_TOKEN}"
 
 
 VERSIONS = [
@@ -193,6 +213,7 @@ VERSIONS = [
     JCommonsenseQAWithFintanPrompt,
     JCommonsenseQAWithJAAlpacaPrompt,
     JCommonsenseQAWithRinnaInstructionSFT,
+    JCommonsenseQAWithStableLMSFTV1,
 ]
 
 

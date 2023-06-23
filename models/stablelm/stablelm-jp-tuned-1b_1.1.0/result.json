@@ -1,0 +1,24 @@
+{
+  "results": {
+    "jcommonsenseqa-1.1-0.5": {
+      "acc": 0.2323503127792672,
+      "acc_stderr": 0.012630840983288427,
+      "acc_norm": 0.24039320822162646,
+      "acc_norm_stderr": 0.012780110667692917
+    }
+  },
+  "versions": {
+    "jcommonsenseqa-1.1-0.5": 1.1
+  },
+  "config": {
+    "model": "hf-causal",
+    "model_args": "pretrained=/fsx/home-fujiki/outputs/exp042_stablelm-jp-tuned-1b_1.1.0/checkpoint-21381,tokenizer=/fsx/home-fujiki/tokenizers/nai-hf-tokenizer_v2,use_fast=False",
+    "num_fewshot": 3,
+    "batch_size": null,
+    "device": "cuda",
+    "no_cache": false,
+    "limit": null,
+    "bootstrap_iters": 100000,
+    "description_dict": {}
+  }
+}
