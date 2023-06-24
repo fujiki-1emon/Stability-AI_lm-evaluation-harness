@@ -131,11 +131,19 @@ class JNLIWithRinnaInstructionSFT(JNLIWithFintanPrompt):
         return f"<NL>ユーザー: {input_text}<NL>システム: "
    
 
+class JNLIWithRinnaInstructionSFTV2(JNLIWithFintanPrompt):
+    PROMPT_VERSION = 0.6
+    DESCRIPTION = "ユーザー: " + f"与えられた前提と仮説の関係を回答してください。出力は以下から選択してください：\n" + "\n".join(JNLIWithFintanPrompt.CHOICES) + "\nシステム: 分かりました。"
+    def doc_to_text(self, doc):
+        input_text = f"前提：{doc['premise']}\n仮説：{doc['hypothesis']}"
+        return f"\nユーザー: {input_text}\nシステム: "
+
 
 VERSIONS = [
     JNLIWithFintanPrompt,
     JNLIWithJAAlpacaPrompt,
     JNLIWithRinnaInstructionSFT,
+    JNLIWithRinnaInstructionSFTV2,
 ]
 
 

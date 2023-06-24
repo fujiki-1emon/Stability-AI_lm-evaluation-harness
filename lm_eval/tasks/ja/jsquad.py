@@ -244,11 +244,21 @@ class JSQuADWithRinnaInstructionSFT(JSQuAD):
         return f"<NL>ユーザー: {input_text}<NL>システム: "
 
 
+class JSQuADWithRinnaInstructionSFTV2(JSQuAD):
+    PROMPT_VERSION = 0.6
+    DESCRIPTION = "ユーザー: 与えられた文脈から、質問に対する答えを抜き出してください。\nシステム: 分かりました。"
+    def doc_to_text(self, doc):
+        input_text = f"文脈：{doc['context'].split('[SEP]')[-1].strip()}\n質問：{doc['question']}"
+        # input_text = f"質問：{doc['question']}<NL>文脈：{doc['context'].split('[SEP]')[-1].strip()}"
+        return f"\nユーザー: {input_text}\nシステム: "
+
+
 VERSIONS = [
     JSQuAD,
     JSQuADWithFintanPrompt,
     JSQuADWithJAAlpacaPrompt,
     JSQuADWithRinnaInstructionSFT,
+    JSQuADWithRinnaInstructionSFTV2,
 ]
 
 
