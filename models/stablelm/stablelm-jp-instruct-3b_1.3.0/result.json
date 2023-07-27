@@ -34,8 +34,8 @@
       "rouge2": 5.779891711271447
     },
     "mgsm-1.0-0.3": {
-      "acc": 0.024,
-      "acc_stderr": 0.009699087026964235
+      "acc": 0.016,
+      "acc_stderr": 0.007951661188874326
     }
   },
   "versions": {
@@ -50,7 +50,7 @@
   },
   "config": {
     "model": "hf-causal",
-    "model_args": "pretrained={PROJECT_DIR}/instruction_tuning/outputs/stablelm-jp-instruct-3b_1.3.0/,tokenizer={PROJECT_DIR}/tokenizers/nai-hf-tokenizer/,use_fast=False",
+    "model_args": "pretrained=sft/models/stablelm-jp-instruct-3b_1.3.0/,tokenizer=/fsx/proj-jp-stablegpt/tokenizers/nai-hf-tokenizer/,use_fast=False",
     "num_fewshot": [
       3,
       3,
@@ -59,7 +59,7 @@
       1,
       1,
       0,
-      4
+      5
     ],
     "batch_size": null,
     "device": "cuda",
