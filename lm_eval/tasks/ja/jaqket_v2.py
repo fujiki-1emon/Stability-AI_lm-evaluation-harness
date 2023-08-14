@@ -229,11 +229,23 @@ class JAQKETV2WithRinnaInstructionSFT(JAQKETV2):
         return f"ユーザー: {input_text}{self.SEP}システム: "
 
 
+class JAQKETV2WithRinnaBilingualInstructionSFT(JAQKETV2WithRinnaInstructionSFT):
+    """
+    Reference:
+    - HF Hub: https://huggingface.co/rinna/bilingual-gpt-neox-4b-instruction-sft
+    """
+    PROMPT_VERSION = 0.5
+    DESCRIPTION = "ユーザー: 与えられた文脈から、質問に対する答えを抜き出してください。\nシステム: 分かりました。\n"
+    SEP = "\n"
+    FEWSHOT_SEP = "\n"
+
+
 VERSIONS = [
     JAQKETV2,
     JAQKETV2WithFintanPrompt,
     JAQKETV2WithJAAlpacaPrompt,
     JAQKETV2WithRinnaInstructionSFT,
+    JAQKETV2WithRinnaBilingualInstructionSFT
 ]
 
 
