@@ -257,6 +257,26 @@ class JSQuADWithRinnaBilingualInstructionSFT(JSQuADWithRinnaInstructionSFT):
     SEP = "\n"
     FEWSHOT_SEP = "\n"
 
+
+class JSQuADWithJAOrcaPrompt(JSQuAD):
+    PROMPT_VERSION = 0.6
+    DESCRIPTION = "### システム:\nあなたは、人々が情報を見つけるのを助ける AI アシスタントです。\n\n"
+    INSTRUCTION = "与えられた文脈から、質問に対する答えを抜き出してください。"
+    def doc_to_text(self, doc):
+        """
+        ### システム:
+        あなたは、人々が情報を見つけるのを助ける AI アシスタントです。
+
+        ### ユーザ:
+        {instruction}
+        {input}
+
+        ### アシスタント:
+        {response}
+        """
+        input_text = f"文脈：{doc['context'].split('[SEP]')[-1].strip()}\n質問：{doc['question']}"
+        return f"### ユーザ:\n{self.INSTRUCTION}\n{input_text}\n\n### アシスタント:\n"
+
     
 VERSIONS = [
     JSQuAD,
@@ -264,6 +284,7 @@ VERSIONS = [
     JSQuADWithJAAlpacaPrompt,
     JSQuADWithRinnaInstructionSFT,
     JSQuADWithRinnaBilingualInstructionSFT,
+    JSQuADWithJAOrcaPrompt,
 ]
 
 

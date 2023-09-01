@@ -214,11 +214,35 @@ class XLSumJaWithRinnaBilingualInstructionSFT(XLSumJaWithRinnaInstructionSFT):
     FEWSHOT_SEP = "\n"
 
 
+class XLSumJaWithJAAOrcaPrompt(XLSumJa):
+    PROMPT_VERSION = 0.6
+    DESCRIPTION = "### システム:\nあなたは、人々が情報を見つけるのを助ける AI アシスタントです。\n\n"
+    INSTRUCTION = "与えられたニュース記事を要約してください。"
+    def doc_to_text(self, doc):
+        """
+        ### システム:
+        あなたは、人々が情報を見つけるのを助ける AI アシスタントです。
+
+        ### ユーザ:
+        {instruction}
+        {input}
+
+        ### アシスタント:
+        {response}
+        """
+        input_text = f"ニュース記事:{doc['text']}"
+        return f"### ユーザ:\n{self.INSTRUCTION}\n{input_text}\n\n### アシスタント:\n"
+
+    def preprocess_ctx(self, ctx, max_length):
+        return super().preprocess_ctx(ctx, max_length, ctx_prompt=f"### ユーザ:\n{self.INSTRUCTION}\n", summary_prompt="### アシスタント:\n")
+
+
 VERSIONS = [
     XLSumJa,
     XLSumJaWithJAAlpacaPrompt,
     XLSumJaWithRinnaInstructionSFT,
     XLSumJaWithRinnaBilingualInstructionSFT,
+    XLSumJaWithJAAOrcaPrompt,
 ]
 
 
