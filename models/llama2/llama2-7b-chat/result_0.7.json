@@ -1,0 +1,35 @@
+{
+  "results": {
+    "jsquad-1.1-0.7": {
+      "exact_match": 16.321476812246736,
+      "f1": 28.323532296822748
+    },
+    "jaqket_v2-0.2-0.7": {
+      "exact_match": 0.8591065292096219,
+      "f1": 3.352911758998753
+    },
+    "xlsum_ja-1.0-0.7": {
+      "rouge2": 0.26917024581756177
+    }
+  },
+  "versions": {
+    "jsquad-1.1-0.7": 1.1,
+    "jaqket_v2-0.2-0.7": 0.2,
+    "xlsum_ja-1.0-0.7": 1.0
+  },
+  "config": {
+    "model": "hf-causal-experimental",
+    "model_args": "pretrained=meta-llama/Llama-2-7b-chat-hf,use_accelerate=True",
+    "num_fewshot": [
+      2,
+      1,
+      1
+    ],
+    "batch_size": 2,
+    "device": "cuda",
+    "no_cache": false,
+    "limit": null,
+    "bootstrap_iters": 100000,
+    "description_dict": {}
+  }
+}
