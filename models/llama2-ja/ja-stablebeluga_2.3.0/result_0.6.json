@@ -1,0 +1,35 @@
+{
+  "results": {
+    "jsquad-1.1-0.6": {
+      "exact_match": 14.610535794687078,
+      "f1": 21.98080484934572
+    },
+    "jaqket_v2-0.2-0.6": {
+      "exact_match": 6.357388316151202,
+      "f1": 8.342721615917494
+    },
+    "xlsum_ja-1.0-0.6": {
+      "rouge2": 11.541897077031837
+    }
+  },
+  "versions": {
+    "jsquad-1.1-0.6": 1.1,
+    "jaqket_v2-0.2-0.6": 0.2,
+    "xlsum_ja-1.0-0.6": 1.0
+  },
+  "config": {
+    "model": "hf-causal",
+    "model_args": "pretrained=llama2/sft/hf/ja-stablebeluga_2.3.0/,tokenizer=meta-llama/Llama-2-7b-hf",
+    "num_fewshot": [
+      2,
+      1,
+      1
+    ],
+    "batch_size": null,
+    "device": "cuda",
+    "no_cache": false,
+    "limit": null,
+    "bootstrap_iters": 100000,
+    "description_dict": {}
+  }
+}
