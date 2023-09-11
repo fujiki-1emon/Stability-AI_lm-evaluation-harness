@@ -277,6 +277,11 @@ class JSQuADWithJAOrcaPrompt(JSQuAD):
         input_text = f"文脈：{doc['context'].split('[SEP]')[-1].strip()}\n質問：{doc['question']}"
         return f"### ユーザ:\n{self.INSTRUCTION}\n{input_text}\n\n### アシスタント:\n"
 
+
+class JSQuADWithJAOrcaPromptV2(JSQuADWithJAOrcaPrompt):
+    PROMPT_VERSION = 0.62
+    DESCRIPTION = ""
+
     
 VERSIONS = [
     JSQuAD,
@@ -285,6 +290,7 @@ VERSIONS = [
     JSQuADWithRinnaInstructionSFT,
     JSQuADWithRinnaBilingualInstructionSFT,
     JSQuADWithJAOrcaPrompt,
+    JSQuADWithJAOrcaPromptV2,
 ]
 
 

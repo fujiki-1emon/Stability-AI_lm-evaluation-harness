@@ -237,12 +237,18 @@ class XLSumJaWithJAAOrcaPrompt(XLSumJa):
         return super().preprocess_ctx(ctx, max_length, ctx_prompt=f"### ユーザ:\n{self.INSTRUCTION}\n", summary_prompt="### アシスタント:\n")
 
 
+class XLSumJaWithJAAOrcaPromptV2(XLSumJaWithJAAOrcaPrompt):
+    PROMPT_VERSION = 0.62
+    DESCRIPTION = ""
+
+
 VERSIONS = [
     XLSumJa,
     XLSumJaWithJAAlpacaPrompt,
     XLSumJaWithRinnaInstructionSFT,
     XLSumJaWithRinnaBilingualInstructionSFT,
     XLSumJaWithJAAOrcaPrompt,
+    XLSumJaWithJAAOrcaPromptV2,
 ]
 
 
